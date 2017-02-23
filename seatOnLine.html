@@ -113,6 +113,7 @@
             $("#midLine").height($("#table").height());/*中轴线高度*/
         }
         function click2(){
+            location.href = "activateSuccessNormal.html";
             $("#selectedSpan span").each(function(){
                 var spanId = $(this).attr("id");/*座位号数组*/
             })
@@ -199,7 +200,7 @@ display: block;font-weight: bold;color:#fed9d9;" name="" type="submit" value="�
     <div style="background: url('images/bk1.jpg');width: 1250px;height: 794px;margin: 0 auto;position: relative;overflow: hidden;">
         <div style="margin: 50px auto 0px auto;width: 670px;">
             <h2>座位选择</h2>
-            <form id="" method="post" action="activateSuccessNormal.html">
+
                 <input id="cinemaID" type="hidden" name="cinemaId" value="">
                 <div id="seat">
                     <span><img src="images/seat0.png"/>可选座位</span>
@@ -232,7 +233,7 @@ display: block;font-weight: bold;color:#fed9d9;" name="" type="submit" value="�
                 <div class="button_span" style="margin-top: 0;">
                     <input type="submit" class="button" onclick="click2()" value="下一步">
                 </div>
-            </form>
+         
         </div>
         <div class="bgs">
             <span class="bg">
