@@ -1,0 +1,447 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* 初始化CSS */
+body {
+    font: 12px/1.5 '微软雅黑',arial, simsun, georgia, verdana, helvetica, sans-serif;
+    text-align: justify;
+    text-justify: inter-ideograph;
+    color: #333333;
+    background: none;
+
+}
+
+html, body, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ul, ol, li, form, /*th, td, table,*/ label, article, aside, dialog, footer, header, section, footer, nav, figure, hgroup {
+    margin: 0;
+    padding: 0;
+
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+ul, li, ol {
+    list-style: none outside none;
+}
+
+img {
+    border: 0 none;
+    vertical-align: middle;
+}
+
+input, select {
+    vertical-align: middle;
+}
+
+.fl {
+    float: left;
+    display: inline;
+}
+
+.fr {
+    float: right;
+    display: inline;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+address, caption, cite, code, dfn, th, var, optgroup, em {
+    font-style: inherit;
+    font-weight: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+abbr, acronym {
+    border: 0;
+    font-variant: normal;
+}
+
+input, button, textarea, optgroup, option {
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+}
+
+input, button, textarea, select {
+    *font-size: 100%;
+}
+
+input[type="text"], input[type="password"], textarea {
+    outline-style: none;
+    -webkit-appearance: none;
+}
+
+textarea {
+    resize: none;
+}
+
+input, textarea, button {
+    border: 0 none;
+    background: #fff;
+}
+
+/*focus*/
+input, textarea, a, button {
+    outline: none;
+}
+
+input::-moz-focus-inner {
+    border: 0;
+}
+
+/*a*/
+/*a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #ffffff;
+}
+
+a:hover, a:active, a:focus {
+    color: #ffffff;
+    text-decoration: underline;
+}*/
+
+/*clear*/
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.clearit {
+    clear: both;
+    height: 0;
+    font-size: 0;
+    overflow: hidden;
+}
+
+body {
+    background-color: #f4f4f4
+}
+
+.main_video {
+    background: url('../images/vedio_bg.jpg');
+    width: 1250px;
+    height: 654px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.main_video h2 {
+    width: 100%;
+    /*padding: 48px 0 32px;*/
+    font-size: 30px;
+    font-family: '微软雅黑';
+    color: #FFF;
+    text-align: center;
+    line-height: 30px;
+    margin-bottom:30px;
+}
+
+.main_video .middle {
+    width: 362px;
+    height: 222px;
+    margin: 0 auto;
+    position: relative;
+    padding: 68px 155px 0px 155px;
+    z-index: 10
+}
+
+.main_video .middle a {
+    /*padding-right: 5px;*/
+    cursor: pointer;
+}
+
+.main_video .button_span {
+    width: 667px;
+    height: 46px;
+    /*padding: 50px 0 46px;*/
+  /*  padding: 50px 0 24px;*//*更改*/
+    margin: 0 auto;
+    position: relative;
+    z-index: 10
+}
+
+.main_video .button_span .button {
+    width: 360px;
+    height: 46px;
+    background: url(../images/vedio_button_bg.jpg) repeat-x;
+
+    text-align: center;
+    line-height: 46px;
+    color: #FFF;
+    font-family: '微软雅黑';
+    font-size: 20px;
+    margin: 0 auto;
+    cursor: pointer;
+    margin-top:30px;
+}
+
+.main_video .bgs {
+    z-index: 0;
+    width: 667px;
+    height: 289px;
+    position: absolute;
+    top: 110px;
+    left: 289px
+}
+
+.main_video .bgs .bg {
+    width: 100%;
+    height: 526px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #FFF;
+    opacity: 0.15;
+    filter:Alpha(opacity=15);
+    _filter: progid:DXImageTransform.Microsoft.Alpha(opacity=15);
+}
+
+
+.main_video .bgs .button_bg {
+    width: 667px;
+    height: 108px;
+    position: absolute;
+    top: 386px;
+    left: 0px;
+    z-index: 1;
+    background-color: #FFF;
+    opacity: 0.4;
+    display: block;
+    filter: alpha(opacity=40);
+    /*_filter: progid:DXImageTransform.Microsoft.Alpha(opacity=40);*/
+    -moz-opacity: 0.4;
+    -khtml-opacity: 0.4;
+}
+
+.top {
+    width: 1250px;
+    margin: 0 auto;
+    position: relative;
+    background-color: #fff
+}
+
+
+.about {
+    background-color: #dbdada;
+    color: #7f7f7f;
+    height: 70px;
+    margin: 0 auto;
+    padding-top: 45px;
+    width: 1250px;font-weight: bold;
+}
+
+.about p {
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+}
+
+.about a {
+    color: #7c2710
+}
+
+.main_video .button_span {
+    width: 360px;
+    margin: 0px auto 0;
+    z-index: 100;
+    position: relative
+}
+
+.title {
+    width: 194px;
+    height: 36px;
+    float: left;
+    margin-bottom: 10px;
+    margin-top: 50px;
+}
+#table{
+    overflow: hidden;
+    display: block;
+
+}
+#table tbody tr td {
+    /*width: 270px;*/
+    /*height: 36px;line-height: 36px;*/
+    /*text-align: center;*/
+    font-size: 14px;
+    cursor: pointer;border-bottom:1px solid #8c6765;
+}
+.td1{
+    /*width:214px;*//*padding-top: 6px;padding-bottom: 6px;*//*vertical-align: text-bottom;*//**/
+}
+.td1 p{
+    margin-left: 26px;width:173px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.td1 a{
+    margin-left: 26px;width:153px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;display: block;
+}
+.td2{
+    width:155px;/*vertical-align: text-bottom;*/text-align: center;
+}
+.td3{
+    width:367px;text-align: left;
+}
+.ticket{
+
+}
+.seat{
+
+}
+.ticket span{
+    margin-top:10px;margin-bottom: 10px;width:70px;height:18px;line-height:18px;border-radius: 4px;background-color: #ff9600;display: block;font-size: 12px;margin-right: 20px;
+    text-align: center;
+}
+.seat span{
+    margin-top:10px;margin-bottom: 10px;width:70px;height:18px;line-height:16px;border-radius: 4px;background-color: #e75f53;display: block;font-size: 12px;margin-right: 20px;
+    text-align: center;
+}
+.ticket span:hover{
+    background-color: #d77e00;
+}
+.seat span:hover{
+    background-color: #be4c42;
+}
+.address1{
+    float:left;width:230px;padding-top: 8px;overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.address2{
+    float:left;width:230px;padding-top: 8px;overflow: hidden;
+    text-overflow: ellipsis;
+}
+#cinemaType{
+    width: 100px;
+    height: 36px;
+    float: left;
+    text-align: center;
+    line-height: 36px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.gray {
+    background-color: gray;
+}
+.red {
+    background-color: rgb(236,84,83);/*更改*/
+}
+
+a:link {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+a:active {
+    color: white;
+    text-decoration: none;
+}
+
+
+#province a{
+    width: 74px;
+   /* height: 30px;
+    line-height: 30px;*/
+    margin: 10px 0px 0px;
+    float: left;
+    padding: 0px 3px;
+    overflow: hidden;
+   /* text-align: center;*/
+}
+#area a {
+    width: 74px;
+    height: 30px;
+    line-height: 30px;
+    margin: 10px 0px 0px;
+    float: left;
+    padding: 0px 3px;
+    overflow: hidden;
+    text-align: center;
+}
+
+#area123 a {
+    width: 74px;
+    height: 30px;
+    line-height: 30px;
+    margin: 10px 0px;
+    float: left;
+    padding: 0px 3px;
+    overflow: hidden;
+}
+
+#wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: black;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 15001;
+}
+#popW {
+    width: 560px;
+    height: 135px;
+    position: absolute;
+    left: 0;
+    top: 278px;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    background-color: #ebebeb;
+    z-index: 15002;
+    border: 4px solid #d7d7d7;
+    border-radius: 4px;
+    display: none;
+    font-family: '微软雅黑';
+    color: #7f7f7f;
+    font-weight: bold;
+    font-size: 15px;
+    word-spacing: 2px;
+    position:fixed;
+}
+#popTable{
+    margin:25px auto;width:560px;text-align: center;
+}
+#popTable tr td{
+    width:33%;
+}

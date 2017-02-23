@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <style>
+        @charset "utf-8";
+        body {
+            font: 12px/1.5 '微软雅黑',arial, simsun, georgia, verdana, helvetica, sans-serif;
+            text-align: justify;
+            color: #333333;
+            background: none;
+        }
+        html, body, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ul, ol, li, form, /*th, td, table,*/ label, article, aside, dialog, footer, header, section, footer, nav, figure, hgroup {
+            margin: 0;
+            padding: 0;
+        }
+        ul, li, ol {
+            list-style: none outside none;
+        }
+        img {
+            border: 0 none;
+            vertical-align: middle;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-size: 100%;
+            font-weight: normal;
+        }
+        ul{
+            list-style: none;
+        }
+        #right ul{
+            display:inline;
+        }
+        #right li{
+            display:inline;
+        }
+        #ldown li{
+            margin-right:5px;width:62px;height:54px;background-color: #d77e00;float:left;
+        }
+    </style>
+    <script>
+        $().ready(function(){
+            $.ajax({
+                type:"get",
+                url:"",
+                data:"",
+                   /* <div class="kind">
+                        <span class="name">品类：</span>
+                          <ul>
+                                 <li>平纹</li><li>压花</li>
+                          </ul>
+                   </div>*/
+                success:function(data){
+                    $div = "<div class='kind'></div>";
+                    $span = "<span class='name'>品类：</span>";
+                    $ul = "<ul></ul>";
+                    $span.appendTo($div);
+                    $ul.appendTo($div);
+                    for(var i =0;i<data.length;i++){
+                        $li = "<li>"+ data[i] +"</li>";
+                        $li.appendTo($ul);
+                    }
+                }
+            });
+        })
+    </script>
+</head>
+<body>
+<div style="width:1200px;margin: 0 auto;">
+    <div id="left" style="float:left;">
+        <div id="lup" style="width:350px;height:350px;">
+            <img src="123.png" width="100%;">
+        </div>
+        <div id="ldown" style="margin-top:10px;width:350px;">
+            <ul style="list-style: none;">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+    <div id="right" style="width:720px;margin-right:30px;float:right;">
+        <p class="name">锦特精品客房卷纸</p>
+
+        <p class="tips" style="margin-top: 5px;margin-bottom: 5px;">此产品适用于星级和连锁酒店</p>
+
+        <div class="price" style="width:716px;height:46px;line-height:46px;background-color: red">
+            宜购价:￥124.80
+        </div>
+        <p class="deliver" style="margin-top: 5px;">预计 2016-12-10日 ~ 2016-12-12 日进行配送</p>
+
+        <div class="kind">
+            <span class="name">品类：</span>
+            <ul>
+                <li>平纹</li><li>压花</li>
+            </ul>
+        </div>
+        <div class="weight">
+            <span class="name">克重：</span>
+            <ul>
+                <li>30克</li><li>40克</li><li>50克</li><li>60克</li><li>70克</li><li>80克</li>
+            </ul>
+        </div>
+        <div class="quantity">
+            <span class="name">包装：</span>
+            <ul>
+                <li>1*432卷</li><li>1*320</li><li>1*180</li><li>1*120</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

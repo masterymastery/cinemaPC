@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/css3.css" rel="stylesheet"/>
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.css"/>
+    <script>
+        var map = [
+            'nnn-----aaaaaaaaaaaaaaaaaaaaaaaaa',
+            'naanna--',
+            '______nn',
+            'aaaaaa--',
+            'aaaaaa--',
+            'aaaaaa--',
+            'aa__aa--'
+            /*'aa__aa------a1',
+            'aaaaaa------122',
+            'aaaaaa------',
+            '______------aaaaaa',
+            '----------aaaaaaa',
+            'aaaaaa----aaaa',
+            '______------12321',
+            'aaaaaa------11',
+            'aaaaaa---',
+            'aaaaaa------',
+            'aa__aa--aaaaaaaaaa',
+            'aa__aa------a1',
+            'aaaaaa------122',
+            'aaaaaa------',
+            '______------aaaaaa',
+            'aa__aa------a1',
+            'aaaaaa------122',
+            'aaaaaa------',
+            '______------aaaaaa',
+            '----------aaaaaaa',
+            'aaaaaa----aaaa',
+            '______------12321',
+            'aaaaaa------11',
+            'aaaaaa---',
+            'aaaaaa------',
+            'aa__aa--aaaaaaaaaa',
+            'aa__aa------a1',
+            'aaaaaa------122',
+            'aaaaaa------',
+            '______------aaaaaa',
+            'aa__aa------a1',
+            'aaaaaa------122',
+            'aaaaaa------',
+            '______------aaaaaa',
+            '----------aaaaaaa',
+            'aaaaaa----aaaa',
+            '______------12321',
+            'aaaaaa------11',
+            'aaaaaa---',
+            'aaaaaa------',
+            'aa__aa--aaaaaaaaaa',
+            'aa__aa------a1',
+            'aaaaaa------122',
+            'aaaaaa------',
+            '______------aaaaaa'*/
+        ];
+        /*列数按照数字来 个位数有可能前面加零 0代表空 LK代表锁座*/
+        var dude = ["0,1,2,3,4,5,6,7,8,9,10,11,12","0,1,2,3,4,5,6,7,8,9,10,11,12","0,1,2,LK,LK,LK,LK,LK,LK,LK,LK,LK,12"
+            ,"0,LK,LK,LK,LK,LK,LK,LK,LK,LK,LK,11,12","0,LK,LK,LK,LK,LK,LK,LK,LK,LK,LK,11,12","0,LK,LK,LK,LK,LK,LK,LK,LK,LK,LK,LK,12",
+            "0,1,LK,LK,LK,LK,LK,LK,LK,LK,LK,11,12","0,LK,LK,LK,LK,LK,LK,LK,LK,LK,LK,11,12","LK,LK,LK,LK,LK,LK,LK,LK,LK,LK,LK,13,14"];
+        var dude1 = [["0","1","2","3","4"],["0","1","2","3","4"],["0","1","2","3","4"]];
+
+        function init(){
+            /*计算最大列数*/
+            var length = [];
+            for(var i = 0; i < map.length; i++){
+                for (var j = 0; j < map[i].length; j++) {
+                    length[i] = j;
+                }
+            }
+            var maxCol;/*最多一列个数*/
+            for(var i=0;i<length.length;i++){
+                if(length[i] > length [i+1]){
+                    length[i+1] = length[i];
+                }
+                maxCol = length[length.length-1] - 2;/*减去头和0下标*/
+            }
+            /*生成座位*/
+            for (var i = 0; i < map.length; i++) {//遍历行数
+                var row = i + 1;
+                var $tr = $("<tr></tr>");//
+                var $tdFirst = $("<td><div class='tdFirst'>" + row + "</div></td>");//行标
+                var col = 0;
+                for (var j = 0; j < map[i].length; j++) {//遍历列数
+                    if(map[i].charAt(j) != 'n' ){
+                        col++;
+                    }
+                    /*var col = j + 1;*/
+                    if (map[i].charAt(j) == 'a') {//判断字符
+                        var $td = $("<td><div class='unaviliable' data-position='" + row + "排" + col + "座" + "'></div></td>");
+                    }
+                    else if(map[i].charAt(j) == 'n'){/*空气*/
+                        var $td = $("<td><div class='none'></div></td>");
+                    }
+                    else {
+                        var $td = $("<td><div class='aviliable' data-position='" + row + "排" + col + "座" + "'></div></td>");
+                    }
+                    $td.appendTo($tr);
+                }
+                $tdFirst.prependTo($tr);
+                $tr.appendTo($("#table"));
+            }
+            /* $("#mCSB_1_container").css("left","-12px");*/
+            $("#tt").css("width",$("#table").width()+12);
+            $("#midLine").height($("#table").height());/*中轴线高度*/
+        }
+        function click2(){
+            $("#selectedSpan span").each(function(){
+                var spanId = $(this).attr("id");/*座位号数组*/
+            })
+        }
+        $().ready(function () {
+            $(window).load(function () {
+                $("#tableWapper").mCustomScrollbar();
+            });
+            $("#tableWapper").mCustomScrollbar({
+                axis:"yx" // vertical and horizontal scrollbar
+            });
+            $("#tableWapper").mCustomScrollbar("update");
+            $("#table").delegate(".aviliable", "click", function () {
+                $("#selected").css("visibility","visible");
+                var position = $(this).attr("data-position");
+                if ($(this).hasClass("selected")) {/*选中已选*/
+                    $(this).removeClass("selected");
+                    $("#" + position + "").remove();
+                    if($("#selectedSpan").children().length == 0){
+                        $("#selected").css("visibility","hidden");
+                    }
+                }
+                else {
+                    if ($("#selectedSpan").children().length >= 4) {
+                        var left = ($(document).width() - $("#MyDiv").width()) / 2;//动态计算让弹出框居中
+                        $("#wrapper").css({display: "block", width: $(document).width(), height: $(document).height()});
+                        $("#popW").css("display", "block").css("top",$(window).height()/2 - $("#popW").height());//弹框1
+                        /*$("#popW1").css("display", "block").css("top",$(window).height()/2 - $("#popW1").height());*///弹框2
+                    }
+                    else {
+                        $(this).addClass("selected");
+                        var content = $("#selectedWrapper span").html();
+                        var $span = $("<span id='" + position + "'>已选" + position + "</span>");
+                        $span.appendTo($("#selectedSpan"));
+                    }
+                }
+            })
+            $("#close").click(function () {//关闭提示框1
+                $("#wrapper").css("display", "none");
+                $("#popW").css("display", "none");
+            })
+            $("#submit").click(function () {//关闭提示框1
+                $("#wrapper").css("display", "none");
+                $("#popW").css("display", "none");
+            })
+            /*$("#close").click(function () {//关闭提示框2
+                $("#wrapper").css("display", "none");
+                $("#popW1").css("display", "none");
+            })
+            $("#submit").click(function () {//关闭提示框2
+                $("#wrapper").css("display", "none");
+                $("#popW1").css("display", "none");
+            })*/
+        })
+    </script>
+</head>
+<body onload="init()">
+<div id="wrapper">
+</div>
+<div id="popW">
+    <div>
+        <img id="close" style="float: right;cursor: pointer;margin-top:4px;margin-right: 4px;" src="images/1_03.jpg"/>
+    </div>
+    <p style="font-size: 20px;margin-top: 30px;margin-bottom: 18px;margin-left: 100px;font-family: '微软雅黑';font-weight: normal;">最多只能选择4个座位</p>
+        <div style="text-align: center;">
+            <input id="submit" style="width:74px;height: 27px;border-radius: 4px;cursor: pointer;font-size: 15px;margin: 0 auto;background-color: #fc3d3d;
+display: block;font-weight: bold;color:#fed9d9;" name="" type="submit" value="知道了"/>
+        </div>
+</div>
+<div id="popW1"><!--另一个弹框-->
+    <div>
+        <img id="close1" style="float: right;cursor: pointer;margin-top:4px;margin-right: 4px;" src="images/1_03.jpg"/>
+    </div>
+    <p style="font-size: 20px;margin-top: 30px;margin-bottom: 18px;margin-left: 80px;font-family: '微软雅黑';font-weight: normal;">亲，你来晚了！换个座儿吧~</p>
+    <div style="text-align: center;">
+        <input id="submit1" style="width:74px;height: 27px;border-radius: 4px;cursor: pointer;font-size: 15px;margin: 0 auto;background-color: #fc3d3d;
+display: block;font-weight: bold;color:#fed9d9;" name="" type="submit" value="知道了"/>
+    </div>
+</div>
+<div class="main_video">
+    <div class="top">
+        <img style="margin-top: -30px;" src="images/logo1.jpg"/>
+    </div>
+    <div style="background: url('images/bk1.jpg');width: 1250px;height: 794px;margin: 0 auto;position: relative;overflow: hidden;">
+        <div style="margin: 50px auto 0px auto;width: 670px;">
+            <h2>座位选择</h2>
+            <form id="" method="post" action="activateSuccessNormal.html">
+                <input id="cinemaID" type="hidden" name="cinemaId" value="">
+                <div id="seat">
+                    <span><img src="images/seat0.png"/>可选座位</span>
+                    <span><img src="images/seat1.png"/>已售座位</span>
+                    <span><img src="images/seat2.png"/>已选座位</span>
+                    <span><img src="images/seat3.png"/>情侣座位</span>
+                </div>
+                <div id="up">
+                    <p id="house">7号厅银幕</p>
+                </div>
+                <div id="selected">
+                    <div id="selectedWrapper">
+                        <img style="vertical-align: bottom;float: left;" src="images/l.png"/>
+                        <span id="selectedSpan">
+                            <!--<span>已选6排13座</span><span>已选6排13座</span><span>已选6排13座</span><span>已选6排13座</span>-->
+                        </span>
+                        <!---->
+                        <img style="vertical-align: bottom;float: left;" src="images/r.png"/>
+                    </div>
+                </div><!-- class="middle mCustomScrollbar" data-mcs-theme="light-2"-->
+                <div id="tableWapper" class="middle mCustomScrollbar content" data-mcs-theme="light-2">
+                    <!--<span id="midLineText">中轴线</span>
+                    <div id="midLine"></div>-->
+                    <div id="tt" style="margin-left: -12px;margin:0 auto;">
+                        <table id="table">
+                        </table>
+                    </div>
+                </div>
+                <p style="font-size: 12px;color:#d0ccc3;margin-top: 12px;margin-left: 20px;">使用说明：选座时，请尽量选择相邻座位，不要留下单个座位</p>
+                <div class="button_span" style="margin-top: 0;">
+                    <input type="submit" class="button" onclick="click2()" value="下一步">
+                </div>
+            </form>
+        </div>
+        <div class="bgs">
+            <span class="bg">
+            </span>
+            <span class="bg button_bg"></span>
+        </div>
+    </div>
+    <span style="clear:both;"></span>
+
+    <img src="images/bt.jpg"/>
+
+</div>
+</body>
+</html>

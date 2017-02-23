@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<title></title>
+<link href="css/css.css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<!--<script type="text/javascript" src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css"/>-->
+<!-- <link rel="stylesheet" href="css/style.css"/>-->
+<script>
+    var province;
+    var city;
+    var area;
+    var cinemaName;
+    var cinemaType;
+    /*0是都有 都有的时候地址要换一个class 1是券 2是座*/
+    var data = [
+        ["北京石景山万达广场店1", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店2", "2D", "北京市石景山区1号路7层2", "1"],
+        ["北京石景山万达广场店3", "3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "2"],
+        ["北京石景山万达广场店4", "3D", "北京市石景山区1号路7层4", "0"],
+        ["北京石景山万达广场店5", "2D", "北京市石景山区1号路7层5", "1"],
+        ["北京石景山万达广场店6", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店7gsdgfsd", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店8", "2D", "北京市石景山区1号路7层8", "2"],
+        ["北京石景山万达广场店9", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店10", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店1", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店2", "2D", "北京市石景山区1号路7层2", "1"],
+        ["北京石景山万达广场店3", "3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "2"],
+        ["北京石景山万达广场店4", "3D", "北京市石景山区1号路7层4", "0"],
+        ["北京石景山万达广场店5", "2D", "北京市石景山区1号路7层5", "1"],
+        ["北京石景山万达广场店6", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店7gsdgfsd", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店8", "2D", "北京市石景山区1号路7层8", "2"],
+        ["北京石景山万达广场店9", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店10", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店1", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店2", "2D", "北京市石景山区1号路7层2", "1"],
+        ["北京石景山万达广场店3", "3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "2"],
+        ["北京石景山万达广场店4", "3D", "北京市石景山区1号路7层4", "0"],
+        ["北京石景山万达广场店5", "2D", "北京市石景山区1号路7层5", "1"],
+        ["北京石景山万达广场店6", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店7gsdgfsd", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店8", "2D", "北京市石景山区1号路7层8", "2"],
+        ["北京石景山万达广场店9", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店10", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店1", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店2", "2D", "北京市石景山区1号路7层2", "1"],
+        ["北京石景山万达广场店3", "3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "2"],
+        ["北京石景山万达广场店4", "3D", "北京市石景山区1号路7层4", "0"],
+        ["北京石景山万达广场店5", "2D", "北京市石景山区1号路7层5", "1"],
+        ["北京石景山万达广场店6", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店7gsdgfsd", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店8", "2D", "北京市石景山区1号路7层8", "2"],
+        ["北京石景山万达广场店9", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店10", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店1", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店2", "2D", "北京市石景山区1号路7层2", "1"],
+        ["北京石景山万达广场店3", "3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "2"],
+        ["北京石景山万达广场店4", "3D", "北京市石景山区1号路7层4", "0"],
+        ["北京石景山万达广场店5", "2D", "北京市石景山区1号路7层5", "1"],
+        ["北京石景山万达广场店6", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店7gsdgfsd", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店8", "2D", "北京市石景山区1号路7层8", "2"],
+        ["北京石景山万达广场店9", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店10", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店1", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店2", "2D", "北京市石景山区1号路7层2", "1"],
+        ["北京石景山万达广场店3", "3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "2"],
+        ["北京石景山万达广场店4", "3D", "北京市石景山区1号路7层4", "0"],
+        ["北京石景山万达广场店5", "2D", "北京市石景山区1号路7层5", "1"],
+        ["北京石景山万达广场店6", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店7gsdgfsd", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店8", "2D", "北京市石景山区1号路7层8", "2"],
+        ["北京石景山万达广场店9", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店10", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店1", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店2", "2D", "北京市石景山区1号路7层2", "1"],
+        ["北京石景山万达广场店3", "3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "2"],
+        ["北京石景山万达广场店4", "3D", "北京市石景山区1号路7层4", "0"],
+        ["北京石景山万达广场店5", "2D", "北京市石景山区1号路7层5", "1"],
+        ["北京石景山万达广场店6", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店7gsdgfsd", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店8", "2D", "北京市石景山区1号路7层8", "2"],
+        ["北京石景山万达广场店9", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店10", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店1", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店2", "2D", "北京市石景山区1号路7层2", "1"],
+        ["北京石景山万达广场店3", "3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "2"],
+        ["北京石景山万达广场店4", "3D", "北京市石景山区1号路7层4", "0"],
+        ["北京石景山万达广场店5", "2D", "北京市石景山区1号路7层5", "1"],
+        ["北京石景山万达广场店6", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店7gsdgfsd", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店8", "2D", "北京市石景山区1号路7层8", "2"],
+        ["北京石景山万达广场店9", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店10", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店1", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店2", "2D", "北京市石景山区1号路7层2", "1"],
+        ["北京石景山万达广场店3", "3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "2"],
+        ["北京石景山万达广场店4", "3D", "北京市石景山区1号路7层4", "0"],
+        ["北京石景山万达广场店5", "2D", "北京市石景山区1号路7层5", "1"],
+        ["北京石景山万达广场店6", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店7gsdgfsd", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店8", "2D", "北京市石景山区1号路7层8", "2"],
+        ["北京石景山万达广场店9", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店10", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店1", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店2", "2D", "北京市石景山区1号路7层2", "1"],
+        ["北京石景山万达广场店3", "3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "2"],
+        ["北京石景山万达广场店4", "3D", "北京市石景山区1号路7层4", "0"],
+        ["北京石景山万达广场店5", "2D", "北京市石景山区1号路7层5", "1"],
+        ["北京石景山万达广场店6", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店7gsdgfsd", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店8", "2D", "北京市石景山区1号路7层8", "2"],
+        ["北京石景山万达广场店9", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店10", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店1", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店2", "2D", "北京市石景山区1号路7层2", "1"],
+        ["北京石景山万达广场店3", "3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "2"],
+        ["北京石景山万达广场店4", "3D", "北京市石景山区1号路7层4", "0"],
+        ["北京石景山万达广场店5", "2D", "北京市石景山区1号路7层5", "1"],
+        ["北京石景山万达广场店6", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店7gsdgfsd", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店8", "2D", "北京市石景山区1号路7层8", "2"],
+        ["北京石景山万达广场店9", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店10", "2D/3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "1"],
+        ["北京石景山万达广场店1", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"],
+        ["北京石景山万达广场店2", "2D", "北京市石景山区1号路7层2", "1"],
+        ["北京石景山万达广场店3", "3D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "2"],
+        ["北京石景山万达广场店4", "3D", "北京市石景山区1号路7层4", "0"],
+        ["北京石景山万达广场店5", "2D", "北京市石景山区1号路7层5", "1"],
+        ["北京石景山万达广场店6", "2D", "北京市海淀区中关村广场购物中心津乐汇3层(鼎好一期西侧)", "0"]
+    ];
+    var offsetY;
+    var stepPx = 2600;/*每移动2600像素加载新的*/;
+    var step = 0;
+    var count = 116;/*限制一次只加载50个 每50个tr为一组*/
+    function init() {
+        province = true;
+        city = true;
+        area = true;
+        /*if(data.length > 50){*//*判断总数*//*
+            count = 50 ;
+        }else{
+            count = data.length;
+        }*/
+        for (var i = 0; i < count; i++) {/*首次加载*/
+            var $tr = $("<tr></tr>");
+            for(var j = 0; j < data[i].length;j+=data[i].length){
+                var $td1 = $('<td class="td1"><a title="'+data[i][0]+'">'+data[i][0]+'</a></td>');
+                var $td2 = $('<td class="td2"><p>'+data[i][1]+'</p></td>');
+                var $td3 = $('<td class="td3"></td>');
+                var $a = $('<a title="'+data[i][2]+'" class="address1">'+data[i][2]+'</a>');
+                var $div = $('<div style="float:right;"></div>');
+                if(data[i][3] == "0"){/*两个选项的时候改变class*/
+                    var $td1 = $('<td class="td1"><a style="margin-top: -24px;" title="'+data[i][0]+'">'+data[i][0]+'</a></td>');
+                    var $td2 = $('<td class="td2"><p style="margin-top:-24px;">'+data[i][1]+'</p></td>');
+                    var $a = $('<a title="'+data[i][2]+'" class="address2">'+data[i][2]+'</a>');
+                    var $ts = $('<div class="ticket"><span>通兑券</span></div><div class="seat"><span>在线选座</span></div>');
+                }else if(data[i][3] == "1"){
+                    var $ts = $('<div class="ticket"><span>通兑券</span></div>');
+                }else if(data[i][3] == "2"){
+                    var $ts = $('<div class="seat"><span>在线选座</span></div>');
+                }
+                $ts.appendTo($div);
+                $a.appendTo($td3);
+                $div.appendTo($td3);
+                $td1.appendTo($tr);
+                $td2.appendTo($tr);
+                $td3.appendTo($tr);
+            }
+            $tr.appendTo($("#table"));
+        }
+        /*offsetY = Math.abs($('#table').offset().top - 313);*/
+        /*var domCount = $("#table tr").length;
+        alert(domCount);*/
+    }
+    $().ready(function () {
+        $("#pipi").scroll(function(){
+            /*alert(data.length);*/
+            /*console.log(Math.abs($('#table tr:last').offset().top));*/
+            /*offsetY = Math.abs($('#table').offset().top - 313);*/
+            if(Math.abs($('#table tr:last').offset().top) <= 640){/*到底了*/
+                step++;
+                /*判断到底*/
+                if(data.length - $("#table tr").length <= count){/*当总数-现有数<=加载数的时候，加载剩余*/
+                   /* alert(count*step);alert(data.length);*/
+                    for (var i = count*step; i < data.length; i++) {
+                        var $tr = $("<tr></tr>");
+                        for(var j = 0; j < 4;j+=4){
+                            var $td1 = $('<td class="td1"><a title="'+data[i][0]+'">'+data[i][0]+'</a></td>');
+                            var $td2 = $('<td class="td2"><p>'+data[i][1]+'</p></td>');
+                            var $td3 = $('<td class="td3"></td>');
+                            var $a = $('<a title="'+data[i][2]+'" class="address1">'+data[i][2]+'</a>');
+                            var $div = $('<div style="float:right;"></div>');
+                            if(data[i][3] == "0"){/*两个选项的时候改变class*/
+                                var $td1 = $('<td class="td1"><a style="margin-top: -24px;" title="'+data[i][0]+'">'+data[i][0]+'</a></td>');
+                                var $td2 = $('<td class="td2"><p style="margin-top:-24px;">'+data[i][1]+'</p></td>');
+                                var $a = $('<a title="'+data[i][2]+'" class="address2">'+data[i][2]+'</a>');
+                                var $ts = $('<div class="ticket"><span>通兑券</span></div><div class="seat"><span>在线选座</span></div>');
+                            }else if(data[i][3] == "1"){
+                                var $ts = $('<div class="ticket"><span>通兑券</span></div>');
+                            }else if(data[i][3] == "2"){
+                                var $ts = $('<div class="seat"><span>在线选座</span></div>');
+                            }
+                            $ts.appendTo($div);
+                            $a.appendTo($td3);
+                            $div.appendTo($td3);
+                            $td1.appendTo($tr);
+                            $td2.appendTo($tr);
+                            $td3.appendTo($tr);
+                        }
+                        $tr.appendTo($("#table"));
+                    }
+                }else{
+                    for (var i = count*step; i < count*(step+1); i++) {/*一次加载50个*/
+                        var $tr = $("<tr></tr>");
+                        for(var j = 0; j < 4;j+=4){
+                            var $td1 = $('<td class="td1"><a title="'+data[i][0]+'">'+data[i][0]+'</a></td>');
+                            var $td2 = $('<td class="td2"><p>'+data[i][1]+'</p></td>');
+                            var $td3 = $('<td class="td3"></td>');
+                            var $a = $('<a title="'+data[i][2]+'" class="address1">'+data[i][2]+'</a>');
+                            var $div = $('<div style="float:right;"></div>');
+                            if(data[i][3] == "0"){/*两个选项的时候改变class*/
+                                var $td1 = $('<td class="td1"><a style="margin-top: -24px;" title="'+data[i][0]+'">'+data[i][0]+'</a></td>');
+                                var $td2 = $('<td class="td2"><p style="margin-top:-24px;">'+data[i][1]+'</p></td>');
+                                var $a = $('<a title="'+data[i][2]+'" class="address2">'+data[i][2]+'</a>');
+                                var $ts = $('<div class="ticket"><span>通兑券</span></div><div class="seat"><span>在线选座</span></div>');
+                            }else if(data[i][3] == "1"){
+                                var $ts = $('<div class="ticket"><span>通兑券</span></div>');
+                            }else if(data[i][3] == "2"){
+                                var $ts = $('<div class="seat"><span>在线选座</span></div>');
+                            }
+                            $ts.appendTo($div);
+                            $a.appendTo($td3);
+                            $div.appendTo($td3);
+                            $td1.appendTo($tr);
+                            $td2.appendTo($tr);
+                            $td3.appendTo($tr);
+                        }
+                        $tr.appendTo($("#table"));
+                    }
+                }
+                /*alert($("#table tr").length);
+                alert("count*step:"+count*step);*/
+            }
+            /*console.log("最后一个tr的高度："+Math.abs($('#table tr:eq('+(49)+')').offset().top));
+            console.log("table的y轴位移："+offsetY);*/
+        })
+       /* $(window).load(function () {
+            $(".content").mCustomScrollbar();
+        });*/
+        $("#search").focus(function () {
+            if ($(this).val() == "请输入城市中文或拼音")
+                $(this).val("");
+        })
+        $("#search").blur(function () {
+            if ($(this).val() == "")
+                $(this).val("请输入城市中文或拼音");
+        })
+        $('#table').delegate('td', 'mouseenter', function () {//动态绑定事件 适用于动态添加的节点
+            $(this).parents("tr").addClass("gray");
+        });
+        $('#table').delegate('td', 'mouseleave', function () {
+            $(this).parents("tr").removeClass("gray");
+        });
+        $('#table').delegate('.ticket', 'click', function () {//点击通兑券
+            $("#wrapper").css({display: "block", width: $(document).width(), height: $(document).height()});
+            $("#popW").css("display", "block").css("top",$(window).height()/2 - $("#popW").height());//弹框1
+            cinemaName = $(this).parent().parent().parent().find(".td1 a").html();//获取选中的影院名称
+            cinemaType = $(this).parent().parent().parent().find(".td2 p").html();//获取选中的影院类型
+            $("#cinemaID").attr("value", cinemaName);//input hidden控件 影院名称
+            $("#cName").html(cinemaName);
+            $("#cType").html(cinemaType);
+        });
+        $('#table').delegate('.seat', 'click', function () {//点击在线选座
+            cinemaName = $(this).parent().parent().parent().find(".td1 a").html();//获取选中的影院名称
+            cinemaType = $(this).parent().parent().parent().find(".td2 p").html();//获取选中的影院类型
+            $("#cinemaID").attr("value", cinemaName);//input hidden控件 影院名称
+            location.href = "movie.html";
+        });
+        $("#province").children("div").mouseenter(function () {//各种鼠标移入变色
+            $(this).addClass("gray");
+        })
+        $("#province").children("div").mouseleave(function () {
+            $(this).removeClass("gray");
+        })
+        $('#area').delegate('a', 'mouseenter', function () {//动态绑定事件 适用于动态添加的节点
+            $(this).addClass("gray");
+        });
+        $('#area').delegate('a', 'mouseleave', function () {
+            $(this).removeClass("gray");
+        });
+        $('#area123').delegate('a', 'mouseenter', function () {//动态绑定事件 适用于动态添加的节点
+            $(this).addClass("gray");
+        });
+        $('#area123').delegate('a', 'mouseleave', function () {
+            $(this).removeClass("gray");
+        });
+
+        $("#provinceSelect").click(function () {//点击省份选项卡
+            if (province == true) {
+                $(this).css("background-color", "#41322f").siblings("div").css("background-color", "#51403c").children("img").attr("src", "images/down.jpg");
+                $("#province").css({"display": "block"}).siblings("div").css({"display": "none"});
+                $(this).children("img").attr("src", "images/on.jpg");
+                city = true;
+                area = true;
+            }
+            else {
+                $(this).css("background-color", "#51403c");
+                $("#province").css("display", "none");
+                $(this).children("img").attr("src", "images/down.jpg");
+            }
+            province = !province;
+        })
+        $("#citySelect").click(function () {//点击市级选项卡
+            if (city == true) {
+                $(this).css("background-color", "#41322f").siblings("div").css("background-color", "#51403c").children("img").attr("src", "images/down.jpg");
+                $("#area").css({"display": "block"}).siblings("div").css({"display": "none"});
+                $(this).children("img").attr("src", "images/on.jpg");
+                area = true;
+                province = true;
+            }
+            else {
+                $(this).css("background-color", "#51403c");
+                $("#area").css("display", "none");
+                $(this).children("img").attr("src", "images/down.jpg");
+            }
+            city = !city;
+        })
+        $("#areaSelect").click(function () {//点击地区选项卡
+            if (area == true) {
+                $(this).css("background-color", "#41322f").siblings("div").css("background-color", "#51403c").children("img").attr("src", "images/down.jpg");
+                $("#area123").css({"display": "block"}).siblings("div").css({"display": "none"});
+                $(this).children("img").attr("src", "images/on.jpg");
+                city = true;
+                province = true
+            }
+            else {
+                $(this).css("background-color", "#51403c");
+                $("#area123").css("display", "none");
+                $(this).children("img").attr("src", "images/down.jpg");
+            }
+            area = !area;
+        })
+        $("#province a").click(function () {//点击省份名称
+            $("#provinceSelect span").html($(this).html());//省份显示
+            $.ajax({
+                type: "post",
+                url: "",
+                dataType: "json",
+                data: {
+                    provinceName: $(this).html(),
+                    provinceCode: 123
+                },
+                success: function (data) {//获取到市的内容
+                    for (var i = 0; i < data.length; i++) {
+                        var $a = $("<a href='#'>i</a>");
+                        $a.appendTo($("#area"));
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //     alert(errorThrown);
+                }
+            });
+            $("#provinceSelect").css("background-color", "#51403c");
+            $("#province").css("display", "none");
+            $("#provinceSelect").children("img").attr("src", "images/down.jpg");
+            province = !province;
+        })
+        $("#area a").click(function () {//点击市级名称
+            $("#citySelect span").html($(this).html());//市级显示
+            $.ajax({
+                type: "post",
+                url: "",
+                dataType: "json",
+                data: {
+                    cityName: $(this).html(),
+                    cityCode: 123
+                },
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        var $a = $("<a href='#'>i</a>");
+                        $a.appendTo($("#area123"));
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //          alert(errorThrown);
+                }
+            });
+            $("#citySelect").css("background-color", "#51403c");
+            $("#area").css("display", "none");
+            $("#citySelect").children("img").attr("src", "images/down.jpg");
+            city = !city;
+        })
+        $("#area123 a").click(function () {//点击地区名称
+            $("#areaSelect span").html($(this).html());//地区显示
+            $.ajax({
+                type: "post",
+                url: "",
+                dataType: "json",
+                data: {
+                    areaName: $(this).html(),
+                    areaCode: 123
+                },
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        var $tr = $("<tr></tr>");
+                        for(var j = 0; j < data[i].length;j+=data[i].length){
+                            var $td1 = $('<td class="td1"><a title="'+data[i][0]+'">'+data[i][0]+'</a></td>');
+                            var $td2 = $('<td class="td2">'+data[i][1]+'</td>');
+                            var $td3 = $('<td class="td3"></td>');
+                            var $a = $('<a title="'+data[i][2]+'" class="address1">'+data[i][2]+'</a>');
+                            var $div = $('<div style="float:right;"></div>');
+                            if(data[i][3] == "0"){
+                                var $td1 = $('<td class="td1"><a style="margin-top: -24px;" title="'+data[i][0]+'">'+data[i][0]+'</a></td>');
+                                var $td2 = $('<td class="td2"><p style="margin-top:-24px;">'+data[i][1]+'</p></td>');
+                                var $a = $('<a title="'+data[i][2]+'" class="address2">'+data[i][2]+'</a>');
+                                var $ts = $('<div class="ticket"><span>通兑券</span></div><div class="seat"><span>在线选座</span></div>');
+                            }else if(data[i][3] == "1"){
+                                var $ts = $('<div class="ticket"><span>通兑券</span></div>');
+                            }else if(data[i][3] == "2"){
+                                var $ts = $('<div class="seat"><span>在线选座</span></div>');
+                            }
+                            $ts.appendTo($div);
+                            $a.appendTo($td3);
+                            $div.appendTo($td3);
+                            $td1.appendTo($tr);
+                            $td2.appendTo($tr);
+                            $td3.appendTo($tr);
+                        }
+                        $tr.appendTo($("#table"));
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    //          alert(errorThrown);
+                }
+            });
+            $("#areaSelect").css("background-color", "#51403c");
+            $("#area123").css("display", "none");
+            $("#areaSelect").children("img").attr("src", "images/down.jpg");
+            area = !area;
+        })
+        $("#close").click(function () {//关闭提示框
+            $("#wrapper").css("display", "none");
+            $("#popW").css("display", "none");
+        })
+    })
+
+    function click2() {//弹出提示框遮罩层
+        $("#wrapper").css({display: "block", width: $(document).width(), height: $(document).height()});
+        $("#popW").css("display", "block").css("top",$(window).height()/2 - $("#popW").height());//弹框1
+        $("#cName").html(cinemaName);
+        $("#cType").html(cinemaType);
+       /* $("#popW1").css("display", "block").css("top",$(window).height()/2 - $("#popW1").height());*///弹框2
+    }
+
+    function minus(){
+        var val = $("#ticketCount").val();
+        if(val > 1){
+            val--;
+        }
+        $("#ticketCount").val(val);
+    }
+
+    function sum(){
+        var val = $("#ticketCount").val();
+        val++;
+        $("#ticketCount").val(val);
+    }
+</script>
+</head>
+
+<body onload="init()">
+<div id="wrapper">
+</div>
+<div id="popW">
+
+    <div>
+        <img id="close" style="float: right;cursor: pointer;margin-top:4px;margin-right: 4px;" src="images/1_03.jpg"/>
+    </div>
+    <table id="popTable">
+        <tr>
+            <th width="33%">影院</th>
+            <th width="33%">类型</th>
+            <th width="33%">数量</th>
+        </tr>
+        <tr>
+            <td id="cName" style="white-space: nowrap;">
+            </td>
+            <td id="cType"></td>
+            <td>
+                <span onclick="minus()" style="cursor: pointer;">-</span>
+                <input id="ticketCount" value="1" style="border:1px solid black;background-color: rgb(235,235,235);width: 40px;text-align: center;" type="text"/>
+                <span onclick="sum()" style="cursor: pointer;">+</span>
+            </td>
+        </tr>
+    </table>
+    <form id="opq" method="post" action="activateSuccessWanda.html">
+        <input id="cinemaID1" type="hidden" name="cinemaId" value="">
+    <div style="text-align: center;">
+        <input id="submit" style="width:74px;height: 27px;border-radius: 4px;cursor: pointer;font-size: 15px;margin: 0 auto;background-color: #fc3d3d;
+display: block;font-weight: bold;color:#fed9d9;" name="" type="submit" value="确定"/>
+    </div>
+    </form>
+</div>
+
+<div class="main_video">
+<div class="top clearfix">
+    <img style="margin-top: -30px;" src="images/logo1.jpg"/>
+</div>
+<div style="background: url('images/vedio_bg.jpg');width: 1250px;height: 654px;margin: 0 auto;position: relative;overflow: hidden;">
+    <!--更改style="height:560px;"-->
+    <div id="innerContent" style="margin: 50px auto 0px auto;width: 670px;">
+        <ul>
+            <li>
+                <h2>影院选择</h2>
+            </li>
+            <li>
+                <div style="width:375px;position: relative;height: 40px;font-size: 17px;background-color:#51403c;float:left;text-align: center;line-height: 40px;z-index: 2000;">
+                    <div id="provinceSelect"
+                         style="color:white;display: inline-block;cursor: pointer;width:122px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+                        <span>省份</span> <img src="images/down.jpg"/>
+                    </div>
+                    <div id="citySelect"
+                         style="color:white;display: inline-block;cursor: pointer;width:120px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+                        <span>城市</span> <img src="images/down.jpg"/>
+                    </div>
+                    <div id="areaSelect"
+                         style="color:white;display: inline-block;cursor: pointer;width:122px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+                        <span>地区</span> <img src="images/down.jpg"/>
+                    </div>
+
+                </div>
+                <div style="text-align: center;color:#ffffff;z-index:2;position: relative;">
+                    <span style="line-height: 40px;font-size:14px;">直接搜索：</span>
+
+                    <input id="search" style="margin-top:-4px;background-color: #6d5652;border: 1px solid #ffffff;color: white;"/>
+                </div>
+            </li>
+        </ul>
+        <div id="province"
+             style="background-color:#41322f;width:667px;padding-bottom: 30px;position:absolute;z-index: 2000;display: none;color:white;font-size:15px;">
+            <div style="float:left;height: 73px;width: 667px;">
+                <div style="float:left;width: 123px;text-align: center;margin-top: 10px;">A-G</div>
+                <div id="provinceS" style="float:left;width:462px;">
+                    <a href="#">安徽</a><a href="#">北京</a><a href="#">重庆</a><a href="#">福建</a><a href="#">甘肃</a>
+                    <a href="#">广东</a><a href="#">广西</a><a href="#">贵州</a><a href="#">澳门</a>
+                </div>
+            </div>
+            <div style="float:left;height: 73px;width: 667px;">
+                <div style="float:left;width: 123px;text-align: center;margin-top: 10px;">H-K</div>
+                <div style="float:left;width:462px;">
+                    <a href="#">海南</a><a href="#">河北</a><a href="#">黑龙江</a><a href="#">河南</a><a href="#">湖北</a>
+                    <a href="#">湖南</a><a href="#">江苏</a><a href="#">江西</a><a href="#">吉林</a>
+                </div>
+            </div>
+            <div style="float:left;height: 73px;width: 667px;">
+                <div style="float:left;width: 123px;text-align: center;margin-top: 10px;">L-S</div>
+                <div style="float:left;width:462px;">
+                    <a href="#">辽宁</a><a href="#">内蒙古</a><a href="#">宁夏</a><a href="#">青海</a><a href="#">山东</a>
+                    <a href="#">上海</a><a href="#">山西</a><a href="#">陕西</a><a href="#">四川</a>
+                </div>
+            </div>
+            <div style="float:left;height: 73px;width: 667px;">
+                <div style="float:left;width: 123px;text-align: center;margin-top: 10px;">T-Z</div>
+                <div style="float:left;width:462px;">
+                    <a href="#">天津</a><a href="#">新疆</a><a href="#">西藏</a><a href="#">云南</a>
+                    <a href="#">浙江</a><a href="#">台湾</a><a href="#">香港</a>
+                </div>
+            </div>
+        </div>
+        <div id="area"
+             style="background-color:#41322f;width:607px;padding: 20px 30px 30px;position:absolute;z-index: 2000;display: none;font-size:15px;height: 272px;overflow: auto;">
+            <a href="#">白山7</a><a href="#">蚌埠</a><a href="#">包头</a><a href="#">宝鸡</a><a href="#">保定</a><a
+                href="#">北京啊啊</a><a href="#">长春</a><a href="#">重庆</a><a href="#">大连</a><a href="#">大庆</a><a
+                href="#">大同</a><a href="#">丹东</a><a href="#">德阳</a><a href="#">德州</a><a href="#">东莞</a><a
+                href="#">东营</a>
+        </div>
+
+        <div id="area123"
+             style="background-color:#41322f;width:607px;padding: 20px 30px 30px;position:absolute;z-index: 2000;display: none;text-align: center;font-size:15px;height: 272px;overflow: auto;">
+            <a href="#">东城区</a><a href="#">西城区</a><a href="#">朝阳区</a><a href="#">海淀区</a><a href="#">丰台区</a>
+            <a href="#">石景山区</a><a href="#">门头沟区</a><a href="#">房山区</a><a href="#">大兴区</a><a href="#">通州区</a><a
+                href="#">顺义区</a>
+            <a href="#">昌平区</a><a href="#">平谷区</a><a href="#">怀柔区</a><a href="#">密云县</a><a href="#">延庆县</a>
+
+        </div>
+
+    </div>
+    <div style="clear: both;"></div>
+
+    <form id="" method="post" action="#">
+        <input id="cinemaID" type="hidden" name="cinemaId" value="">
+
+        <div style="width:667px;margin:0 auto;">
+            <div class="title"><img style="margin-left: 25px;margin-right: 20px;" src="images/shouji.png"/>
+
+                <h2 style="padding:0;font-size:20px;display: inline;vertical-align: middle;">影院名称</h2></div>
+            <div class="title" style="width:150px;"><img style="margin-right: 10px;" src="images/fangzhuan.png"/>
+
+                <h2 style="padding:0;font-size:20px;display: inline;vertical-align: middle;">类型</h2></div>
+            <div class="title"><img style="margin-right: 20px;margin-left: 28px;" src="images/xiaoren.png"/>
+
+                <h2 style="padding:0;font-size:20px;display: inline;vertical-align: middle;">观影地址</h2></div>
+        </div>
+        <span style="clear:both;"></span>
+        <div id="pipi" class="middle mCustomScrollbar" data-mcs-theme="light-2" style="width:667px;height: 368px;padding:0;color:white;overflow: auto;float:left;margin-left:289px;">
+                    <table id="table">
+                    </table>
+        </div>
+        <span style="clear:both;"></span>
+      <!--  <div class="button_span" style="margin-top: 0;">
+            <input type="button" class="button" onclick="click2()" value="下一步">
+        </div>-->
+    </form>
+    <!--<script>
+        $(".main_video .bgs .bg").css("background-color", "");
+    </script>-->
+    <div class="bgs">
+            <span class="bg">
+            </span>
+      <!--  <span class="bg button_bg"></span>-->
+    </div>
+</div>
+<span style="clear:both;"></span>
+
+<img src="images/bt.jpg"/>
+<!--<div class="notice">
+    <div style="margin:0 auto;padding-top: 8px;padding-bottom: 8px;" class="about">
+        <img style="display: inline-block;vertical-align: bottom;margin-right:24px;margin-bottom:20px;" src="images/logo2.jpg"/>
+        <ul style="display: inline-block;margin-bottom:18px;">
+            <li>
+                <span>
+                  <img style="margin-right:10px;" src="images/bottom1.jpg"/>客服电话：010-52282024
+                  </span>
+                 <span>
+                  <img style="margin-right:10px;margin-left:20px;" src="images/bottom2.jpg"/>公司地址：北京市石景山区阜石路165号中国华录大厦14层
+               </span>
+            </li>
+            <li>
+                Copyright @北京华录新媒信息技术有限公司版权所有 京ICP备13042706号-2
+            </li>
+        </ul>
+        <img style="display: inline-block;vertical-align: bottom;margin-right:30px;margin-left:25px;" src="images/logo3.png"/>
+    </div>
+</div>-->
+
+</div>
+
+</body>
+</html>

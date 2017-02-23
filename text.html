@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html ng-app>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/perfect-scrollbar.css"/>
+<!--    <script src="js/perfect-scrollbar.jquery.js"></script>-->
+    <script src="js/perfect-scrollbar.js"></script>
+    <script src="js/jquery-1.11.2.min.js"></script>
+    <script>
+        $().ready(function(){
+            var container = document.getElementById('container');
+            Ps.initialize(container);
+        })
+        $(function() {
+           /* $('#Demo').perfectScrollbar();*/
+            // with vanilla JS!
+          /*  var Ps = require('perfect-scrollbar');
+            *//*Ps.initialize(document.getElementById('Demo'));*//*
+            var container = document.getElementById('Demo');
+            Ps.initialize(container);
+            Ps.initialize(container, {
+                wheelSpeed: 2,
+                wheelPropagation: true,
+                minScrollbarLength: 20
+            });*/
+        });
+        function show(value){
+            /*alert(value);*/
+        }
+    </script>
+    <!--<style type="text/css">
+        body { margin: 0; padding: 0; font:14px/1.6em Arial, Helvetica,sans-serif; text-align: center;}
+        .main { width: 800px; margin: 0 auto; margin-top: 20px; color: #FFF; overflow: hidden;}
+        .left {float: left; width: 550px; background: #f00; border: 1px solid #666; padding-bottom: 6180px; margin-bottom: -6180px;}
+        .right {float: right; width: 240px; background: #090; border: 1px solid #666; padding-bottom: 6180px; margin-bottom: -6180px; }
+    </style>-->
+    <style type="text/css">/*圣杯布局*/
+        body{
+            min-width: 988px;
+        }
+        #head{
+            text-align: center;
+        }
+        #container{
+            padding-left: 200px; /*left column width*/
+            padding-right: 150px; /*right column width*/
+            overflow: hidden;
+        }
+        #container .column{
+            position: relative;
+            float: left;
+        }
+        #center{
+            background:#eee;
+            padding: 10px 20px;
+            margin: 0 15px;
+            width: 100%;
+            min-height: 300px;
+            overflow:visible;
+        }
+        #left{
+            width:180px;
+            background:green;
+            margin-left:-100%;
+            right: 270px; /*180+60(padding total)+ 30(margin)*/
+            padding:0 10px; /* LC fullwidth + CC padding */
+            min-height: 300px;
+        }
+        #right{
+            width: 130px;
+            background:yellow;
+            padding: 0 10px;
+            margin-right: -240px; /*fullwidth  + center column padding 尽量大一点，chrome浏览器下，这个div浮动不上来*/
+
+            min-height: 300px;
+        }
+        #footer{
+            clear:  both;
+            text-align: center;
+        }
+        /*IE6 fix*/
+        * html #left {
+            left:100px;
+        }
+    </style>
+</head>
+<body>
+<div id="head">
+    <h1>head</h1>
+</div>
+<div id="container">
+    <div id="center" class="column">
+        center
+        <form>
+            <input type="email" onkeyup="show(this.value)"/>
+            <input type="url"/><input type="number"/><input type="range"/><input type="file"/><input type="color"/>
+            <input type="submit">
+        </form>
+    </div>
+    <div id="left" class="column">
+        left
+    </div>
+    <div id="right" class="column">
+        right
+    </div>
+</div>
+
+<div id="footer">
+    <h1>footer</h1>
+</div>
+<!--<div class="main">&lt;!&ndash;两列等高&ndash;&gt;
+    <div class="left">
+        <p>我很高</p>
+        <p>我也很高</p>
+        <p>我非常高</p>
+        <p>我就是很高</p>
+        <p>我很高</p>
+        <p>我也很高</p>
+        <p>我非常高</p>
+        <p>我就是很高</p>
+        <p>我很高</p>
+        <p>我也很高</p>
+        <p>我非常高</p>
+        <p>我就是很高</p>
+        <p>我很高</p>
+        <p>我也很高</p>
+        <p>我非常高</p>
+        <p>我就是很高</p>
+        <p>我很高</p>
+        <p>我也很高</p>
+        <p>我非常高</p>
+        <p>我就是很高</p>
+    </div>
+    <div class="right">
+        <p>我会和左边一样高吗？</p>
+        <p>我和左边一样高哦！</p>
+    </div>
+</div>-->
+<!--<div style="float:left;width:200px;background-color: yellow;word-break: break-all;">
+<span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
+</div>
+<div style="float:left;margin-left: 10px;background-color: red;/*max-width: 500px;word-break: break-all;*/">
+<span>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
+</div>-->
+<!--<div id="Demo"style="width:500px;height:500px;overflow:auto;position: relative;">
+    <div id="content" style="background-image: url('images/azusa.jpg');width: 1280px;height: 720px;position: absolute;">
+    </div>
+</div>-->
+
+</body>
+</html>

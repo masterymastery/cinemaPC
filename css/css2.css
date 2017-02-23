@@ -1,0 +1,291 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* 初始化CSS */
+body {
+    font: 12px/1.5 '微软雅黑',arial, simsun, georgia, verdana, helvetica, sans-serif;
+    text-align: justify;
+    text-justify: inter-ideograph;
+    color: #333333;
+    background: none;
+
+}
+
+html, body, h1, h2, h3, h4, h5, h6, p, dl, dt, dd, ul, ol, li, form, th, td, table, label, article, aside, dialog, footer, header, section, footer, nav, figure, hgroup {
+    margin: 0;
+    padding: 0;
+
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+ul, li, ol {
+    list-style: none outside none;
+}
+
+img {
+    border: 0 none;
+    vertical-align: middle;
+}
+
+input, select {
+    vertical-align: middle;
+}
+
+.fl {
+    float: left;
+    display: inline;
+}
+
+.fr {
+    float: right;
+    display: inline;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+a{
+    text-decoration: none;color:#aba4a4;font-size: 14px;
+}
+
+a:link {
+    color: #aba4a4;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #aba4a4;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #aba4a4;
+    text-decoration: none;
+}
+
+a:active {
+    color: #aba4a4;
+    text-decoration: none;
+}
+
+.omit{
+    overflow: hidden;white-space: nowrap;text-overflow: ellipsis;
+}
+
+address, caption, cite, code, dfn, th, var, optgroup, em {
+    font-style: inherit;
+    font-weight: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+abbr, acronym {
+    border: 0;
+    font-variant: normal;
+}
+
+.f18{
+    font-size: 18px;font-weight: bold;
+}
+.gray{
+    color:#cac9c9;
+}
+body {
+    background-color: #f4f4f4
+}
+
+.main_video {
+    background: url('../images/vedio_bg.jpg');
+    width: 1250px;
+    height: 654px;
+    margin: 0 auto;
+    position: relative;color:white;
+}
+
+.main_video h2 {
+    width: 100%;
+    /*padding: 48px 0 32px;*/
+    font-size: 30px;
+    font-family: '微软雅黑';
+    color: #FFF;
+    text-align: center;
+    line-height: 30px;
+    margin-bottom:30px;
+    position: relative;
+}
+
+.main_video .button_span .button {
+    width: 360px;
+    height: 46px;
+    background: url(../images/vedio_button_bg.jpg) repeat-x;
+    position: relative;z-index: 10;
+    text-align: center;
+    line-height: 42px;
+    color: #FFF;
+    font-family: '微软雅黑';
+    font-size: 20px;
+    margin: 30px auto 0px 160px;
+    cursor: pointer;border: none;
+}
+
+.main_video .bgs {
+    z-index: 0;
+    width: 670px;
+    height: 289px;
+    position: absolute;
+    top: 110px;
+    left: 289px
+}
+
+.main_video .bgs .bg {
+    width: 100%;
+    height: 656px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #FFF;
+    opacity: 0.15;
+    filter:Alpha(opacity=15);
+    _filter: progid:DXImageTransform.Microsoft.Alpha(opacity=15);
+}
+
+
+.main_video .bgs .button_bg {
+    width: 670px;
+    height: 108px;
+    position: absolute;
+    top: 656px;
+    left: 0px;
+    z-index: 1;
+    background-color: #FFF;
+    opacity: 0.4;
+    display: block;
+    filter: alpha(opacity=40);
+    /*_filter: progid:DXImageTransform.Microsoft.Alpha(opacity=40);*/
+    -moz-opacity: 0.4;
+    -khtml-opacity: 0.4;
+}
+
+.top {
+    width: 1250px;
+    margin: 0 auto;
+    position: relative;
+    background-color: #fff
+}
+
+#cinemaIntro{
+    height:140px;border-bottom: 1px solid #8c6e6a;z-index: 10;position: relative;
+}
+#star{
+    margin-top: 8px;
+}
+#star img{
+    margin-right: 5px;
+}
+#banner {
+    z-index: 10;position: relative;
+    text-align: left;height:282px;
+}
+
+#bannerTop {
+
+}
+
+#bannerTop .lightRed {
+    color: #d86061;
+}
+
+#bannerImage {
+    overflow: hidden;
+    position: relative;width: 670px;
+    height: 129px;
+}
+#cinemaImage{
+    position: absolute;
+    left:0px;
+}
+#imgL{
+    position: absolute;cursor: pointer;left:0px;
+}
+#imgR{
+    position: absolute;cursor: pointer;right:0px;
+}
+#imgL:hover{
+     transform: scale(1.1, 1.1);
+}
+#imgR:hover{
+    transform: scale(1.1, 1.1);
+}
+#cinemaImage ul li {
+    float: left;
+    position: relative;
+}
+
+#cinemaImage img {
+    width: 91px;
+    height: 129px;
+    margin-right:6px;cursor: pointer;
+    /* border-right:5px solid white;*/
+}
+
+#cinemaDetails {
+    z-index: 10;position: relative;height:226px;
+}
+#cinemaSynopsis{
+    height:105px;border:1px solid #b6a4a0;
+}
+
+#dateDiv {
+    position: relative;
+    overflow: hidden;
+}
+
+#date {
+    margin-top:13px;
+    height: 32px;
+}
+
+#date ul {
+    position: absolute;
+    line-height: 20px;
+    margin-top: 10px;
+}
+
+#date ul li {
+    float: left;text-align: center;font-size: 14px;
+    cursor: pointer;width:120px;height: 26px;margin-right: 6px;
+}
+
+.dateSelected {
+    background-color: #aca09e;
+}
+.trSelected{
+    background-color: #a17c7a;
+}
+#dateDivContent{
+    width:670px;height: 142px;padding:0;overflow: auto;float:left;color:#f5f1f0;
+}
+#dateDivContent table tr:hover{
+    background-color: #a17c7a;
+}
+#th span{
+    width:220.9px;height:36px;text-align: center;font-size: 14px;line-height: 36px;display: inline-block;
+}
+#dateDivContent table{
+    width:670px;font-size: 14px;text-align: center;
+}
+#dateDivContent table tr{
+    height:36px;cursor: pointer;
+}
+#dateDivContent table td{
+    width:33%;
+}
